@@ -1,22 +1,27 @@
 import React, { useContext, useEffect } from 'react';
-import { MyContext } from 'src/pages/Contenxt.api';
+import { MyContext } from './Contenxt.api';
 import { useNavigate } from 'react-router-dom';
-function SomeComponent() {
-    const { state } = useContext(MyContext);
+
+function Redirect() {
+    const { state, dispatch } = useContext(MyContext);
     const navigate = useNavigate();
 
     useEffect(() => {
-        debugger
-        if (!state.authorization) {
-                navigate("/login")
+        const storedAuthorization = localStorage.getItem('authorization');
+        if (storedAuthorization) {
+            dispatch({ type: 'SET_AUTHORIZATION', payload: { authorization: storedAuthorization } });
+        } else {
+            navigate('/login');
         }
-    }, [state.authorization, navigate]);
+    }, [dispatch, navigate]);
 
-
+    useEffect(() => {
+        localStorage.setItem('authorization', state.authorization);
+    }, [state.authorization]);
 
     return (
-      <></>
+        <>asa</>
     );
 }
 
-export default SomeComponent;
+export default Redirect;
