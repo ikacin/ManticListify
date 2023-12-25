@@ -6,5 +6,4 @@ Key Features:
 Secure user authentication
 Viewing and managing user lists
 The combined strength of Mantine and React
-[Any other features you may want to highlight]
 The aim of this project is to deliver a secure and interactive user experience using modern web development technologies.
